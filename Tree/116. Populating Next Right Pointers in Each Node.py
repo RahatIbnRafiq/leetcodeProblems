@@ -10,19 +10,18 @@ class Solution:
     # @param root, a tree link node
     # @return nothing
     def connect(self, root):
-        if not root:return
-        traversal = [[root]]
-        level = 0
-        while True:
-            temp = []
-            for node in traversal[level]:
-                if node.left: temp.append(node.left)
-                if node.right: temp.append(node.right)
-            if len(temp) < 1:break
-            else: 
-                traversal.append(temp)
-                level +=1
-        for l in traversal:
-            for i in range(0,len(l)-1):
-                l[i].next = l[i+1]
+        if root is None:
+            return
+        if root.left:
+            root.left.next = root.right
+            if root.next:
+                root.right.next = root.next.left
+            
+        self.connect(root.left)
+        self.connect(root.right)
+        return
+    
+        
+        
+        
         
