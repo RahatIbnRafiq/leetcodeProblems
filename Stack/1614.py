@@ -6,11 +6,8 @@ class Solution:
             if char == '(':
                 count += 1
             elif char == ')':
-                if count > max_count:
-                    max_count = count
+                max_count = max(count, max_count)
                 count -= 1
-            elif '0' <= char <= '9' and count > max_count:
-                max_count = count
         return max_count
 
 
